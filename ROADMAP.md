@@ -8,6 +8,11 @@ Goal: turn the Athos CRM base into a telehealth portal on Medplum where patients
 - [ ] Fill in the catalog: prices, stack contents, products for the remaining categories
 - [ ] Replace the local JSON record store (`server/`, `src/lib/datasource.js`) with Medplum
 
+## Teleforms
+- [ ] Build teleforms (intake questionnaires) in Medplum
+- [ ] Patient fills out a teleform before ordering
+- [ ] Clinician reviews the teleform and approves or declines
+
 ## Patient portal
 - [ ] Browse products by category and stack
 - [ ] Order through an async visit
@@ -15,6 +20,7 @@ Goal: turn the Athos CRM base into a telehealth portal on Medplum where patients
 - [ ] See own orders and their status
 
 ## Clinician view
+- [ ] Teleform review queue
 - [ ] Async visit queue
 - [ ] Sync visit schedule
 - [ ] Review and act on orders
