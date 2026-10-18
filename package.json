@@ -1,0 +1,28 @@
+{
+  "name": "athos-med",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Telehealth portal built from the Athos CRM base on Medplum, where patients order peptides and other medications through sync and async visits. Mock product data only.",
+  "license": "AGPL-3.0-only",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "node server/index.js",
+    "build": "vite build",
+    "start": "NODE_ENV=production node server/index.js"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^5.59.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "sonner": "^1.7.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.3",
+    "vite": "^5.4.10"
+  }
+}
