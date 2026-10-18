@@ -1,6 +1,6 @@
 # Athos Med
 
-A telehealth portal (in progress) where patients order peptides and other medications through **sync** (live) or **async** visits, built on [Medplum](https://github.com/medplum/medplum).
+A telehealth portal (in progress) where patients fill out teleforms and order peptides and other medications through **sync** (live) or **async** visits, built on [Medplum](https://github.com/medplum/medplum).
 
 > **Mock data only.** Products in `mock-data/` are sample data. This project does not store or process real patient or health information.
 
@@ -10,8 +10,8 @@ The app starts from my Athos CRM: three sales pages (Sales Hub, Lead Queue, Lead
 
 ## Who it's for
 
-- **Patients**: browse products and order through a sync or async visit.
-- **Clinicians**: run visits and review orders.
+- **Patients**: fill out teleforms, browse products and order through a sync or async visit.
+- **Clinicians**: review and approve teleforms, run visits and review orders.
 
 ## Built with
 
