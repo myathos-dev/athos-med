@@ -1,0 +1,20 @@
+{
+  "categories": [
+    "Weight loss",
+    "Peptides",
+    "TRT/HRT",
+    "Sexual health",
+    "Recovery",
+    "Wellness"
+  ],
+  "products": [
+    { "id": "semaglutide", "name": "Semaglutide", "category": "Weight loss", "price": null },
+    { "id": "tirzepatide", "name": "Tirzepatide", "category": "Weight loss", "price": null },
+    { "id": "bpc-157", "name": "BPC-157", "category": "Peptides", "price": null }
+  ],
+  "stacks": [
+    { "id": "wolverine", "name": "Wolverine", "products": [] },
+    { "id": "recovery-stack", "name": "Recovery Stack", "products": [] },
+    { "id": "surgery-recovery", "name": "Surgery Recovery", "products": [] }
+  ]
+}
