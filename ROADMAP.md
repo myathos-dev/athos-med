@@ -29,7 +29,8 @@ Goal: turn the Athos CRM base into a telehealth portal on Medplum where patients
 - [ ] Rework Sales Hub → clinician home
 - [ ] Rework Lead Queue → visit and order queue
 - [ ] Rework Leads Dashboard → patients and orders table
-- [ ] Remove sales-only content (DM and email templates, lead types)
+- [x] Remove outreach: DM and email templates, DM and email tasks, Instagram links, email drip
+- [ ] Remove lead types
 
 ## Open decisions
 - [ ] How users sign in and how the patient or clinician role is set

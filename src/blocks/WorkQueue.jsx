@@ -9,7 +9,7 @@ const readSelect = q.select({
   status: "FdlkA", assigned_rep: "KEi5L",
   phone_1: "xEZBF", phone_2: "idy7i", email: "sZk85",
   sales_notes: "YmVZJ", admin_reviewed: "51MnN", admin_notes: "K496s",
-  tasks_completed: "A3XJ9", email_drip_active: "byeHC",
+  tasks_completed: "A3XJ9",
   lead_type: "AjmPW", consumer_note: "bgFsa",
   skool_community_link: "5CkjD", tags: "cd3tD",
   clinic_name: "y9l68", address: "JtT0i", gate_keeper: "U6Ba1",
@@ -21,7 +21,7 @@ const writeFields = q.select({
   status: "FdlkA", assigned_rep: "KEi5L",
   phone_1: "xEZBF", phone_2: "idy7i", email: "sZk85",
   sales_notes: "YmVZJ", admin_reviewed: "51MnN", admin_notes: "K496s",
-  tasks_completed: "A3XJ9", email_drip_active: "byeHC",
+  tasks_completed: "A3XJ9",
   lead_type: "AjmPW", consumer_note: "bgFsa",
   clinic_name: "y9l68", address: "JtT0i", gate_keeper: "U6Ba1",
 });
@@ -54,9 +54,6 @@ const CONSUMER_STATUS_IDS = ["New Lead", "messaged", "cold"];
 const STATUS_PRIORITY = { "New Lead": 0, "Next Contact": 1, "Look-up Info": 2, "pending-outreach": 3, "messaged": 4, "speaking-to": 5, "warm": 6, "cold": 7, "completed": 8 };
 
 const TASKS = [
-  { id: "view_profile", label: "View Profile", type: "link", icon: "eye" },
-  { id: "send_dm", label: "Send DM", type: "dm", icon: "send" },
-  { id: "nudge", label: "Nudge", type: "nudge", icon: "send", statusCond: "messaged" },
   { id: "lookup_info", label: "Lookup Info", type: "info", skip: true, icon: "search", statusCond: "Look-up Info" },
   { id: "lookup_phone", label: "Lookup Phone 1", type: "input", field: "phone_1", skip: true, icon: "phone" },
   { id: "add_phone_2", label: "Lookup Phone 2", type: "input", field: "phone_2", skip: true, icon: "phone" },
@@ -66,15 +63,11 @@ const TASKS = [
 ];
 
 const CONSUMER_TASKS = [
-  { id: "view_profile", label: "View Profile", type: "link", icon: "eye" },
   { id: "add_name", label: "Add Name", type: "input", field: "name", icon: "edit" },
-  { id: "send_dm", label: "Send DM", type: "dm", icon: "send" },
-  { id: "nudge", label: "Nudge", type: "nudge", icon: "send", statusCond: "messaged" },
   { id: "notes", label: "Document Notes", type: "textarea", icon: "edit" },
 ];
 
 const NC_TASKS = [
-  { id: "nudge", label: "Nudge", type: "nudge", icon: "send", ncToggle: "dm" },
   { id: "call", label: "Call", type: "call", cond: "phone_1", icon: "phoneOut", ncToggle: "call" },
   { id: "notes", label: "Document Notes", type: "textarea", icon: "edit" },
 ];
@@ -82,46 +75,45 @@ const NC_TASKS = [
 const CLINIC_NC_TASKS = [
   { id: "call", label: "Call", type: "call", cond: "phone_1", icon: "phoneOut" },
   { id: "call_2", label: "Call Phone 2", type: "call", cond: "phone_2", icon: "phoneOut" },
-  { id: "send_email", label: "Send Email", type: "email_outreach", icon: "mail" },
   { id: "notes", label: "Document Notes", type: "textarea", icon: "edit" },
 ];
 
 const DM_TEMPLATES = [
-  "Hey {first}! Your content is awesome — love what you're doing in the {focus} space. Do you ever partner with wellness brands? We have something that might be a perfect fit.",
-  "Hi {first}! Been following your page and your audience is clearly dialed in on health + performance. We work with creators like you on a residual partnership — would you be open to hearing more?",
-  "Hey {first}! Quick question — do you partner with other brands? We run a referral program in the peptide/wellness space that pays 20-30% residual monthly. No minimums, no exclusivity. Let me know if you'd want the details.",
+  "",
+  "",
+  "",
 ];
 
 const INFLUENCER_PRODUCT_DM_TEMPLATES = [
-  "Hey {first}! Love what you're building in the {focus} space. We're offering a few select creators access to our full peptide line at cost — no markup, just wholesale. All we'd ask is you share your experience when it makes sense for your content. Interested?",
-  "Hey {first}! Quick one — we're setting up a handful of creators in the {focus} space with product at cost for life. No commission structure, no contracts — just use it, talk about it if you like it. Want the details?",
-  "Hey {first}! Your audience is exactly who we built this for. We'd love to get you set up with product at cost — wholesale pricing, no strings. If it works for your content, great. If not, no hard feelings. Worth a look?",
+  "",
+  "",
+  "",
 ];
 
 const CONSUMER_DM_TEMPLATES = [
-  "Hey {first}! Saw your comment about {topic} — are you currently using anything or still researching? We run a licensed telehealth platform for peptides and could probably help you dial things in.",
-  "Hey {first}! Your comment about {topic} caught my eye — a lot of people are looking into that right now. We work with licensed providers who build custom protocols and ship pharmacy-compounded meds direct. Want me to send you the details?",
-  "Hey {first}! Noticed you were asking about {topic} — I get that question a lot. Short answer: there's a legit way to do it through licensed telehealth that most people don't know about. Want me to send you a quick rundown?",
-  "Hey {first}! Noticed your comment on {topic}. We've been helping a lot of people with exactly that — licensed providers, compounded meds, everything legit and supervised. Takes about 5 min to get started if you want to check it out.",
+  "",
+  "",
+  "",
+  "",
 ];
 
 const MICRO_DM_TEMPLATES = [
-  "Hey {first}! Love what you're sharing about {topic}. We're picking a few people in the peptide space to get our products at cost — basically wholesale, no markup. All we ask is you share your honest experience with your followers when you feel like it. Want in?",
-  "Hey {first}! Your content on {topic} is exactly what our community needs to see more of. We'd love to set you up with product at cost for life — you just share what's working for you, keep it real. Want me to set that up?",
-  "Hey {first}! Noticed your posts about {topic} and think you'd be a perfect fit. We have a creator program — product at cost for life, no minimums, no scripts. Just try it, share your results, and your followers get a discount. Interested?",
+  "",
+  "",
+  "",
 ];
 
 const NUDGE_TEMPLATES = [
-  "Hey {first}! Just making sure this didn't get buried — did you get a chance to see my last message?",
-  "Hey {first}! Following up real quick — wanted to make sure my message came through. Would love to chat if you're open to it.",
-  "Hey {first}! Bumping this up in case it got lost in the mix. Still think this could be a great fit — let me know if you're curious.",
-  "Hey {first}! Just following up in case you missed this.",
+  "",
+  "",
+  "",
+  "",
 ];
 
 const CLINIC_NUDGE_TEMPLATES = [
-  { subject: "Following up — {clinic}", body: "Hello {name},\n\nFollowing up on my previous email regarding peptide and GLP-1 supply for {clinic}. We offer competitive rates, reliable fulfillment, and nationwide 503(a)/503(b) sourcing. We can provide end-to-end support or simply integrate as a product supplier to reduce your costs. All of it is white labeled so your patients never see our name.\n\nOverview: https://www.myathos.com/enterprise\n\nDoes it make sense to schedule a call this week?" },
-  { subject: "{clinic} — peptide supply follow-up", body: "Hello {name},\n\nCircling back on my last email. We carry Semaglutide, Tirzepatide, BPC-157, and 1,800+ SKUs across 11 pharmacies — covering weight loss, peptides, TRT/HRT, sexual health, recovery, and wellness. Competitive rates, reliable fulfillment, nationwide 503(a)/503(b) sourcing.\n\nOverview: https://www.myathos.com/enterprise\n\nWould it make sense to connect for 15 minutes this week?" },
-  { subject: "Quick follow-up — {clinic}", body: "Hello {name},\n\nOne more follow-up. We offer end-to-end support — including medical approvals and patient support — or can simply integrate as a product supplier to reduce your costs. All of it is white labeled so your patients never see our name. 50-state coverage, 1,800+ SKUs, your pricing.\n\nhttps://www.myathos.com/enterprise\n\nPlease let me know if it makes sense to schedule a call." },
+  { subject: "", body: "" },
+  { subject: "", body: "" },
+  { subject: "", body: "" },
 ];
 
 const CLINIC_EMAIL_CATS = [
@@ -132,16 +124,16 @@ const CLINIC_EMAIL_CATS = [
 
 const CLINIC_EMAIL_TEMPLATES = {
   "first-touch": {
-    owner: { subject: "{clinic} — peptide and GLP-1 supply", body: "Hello {name},\n\nI'm reaching out regarding peptide and GLP-1 supply for {clinic}. We offer competitive rates, reliable fulfillment, and nationwide 503(a)/503(b) sourcing across an 11-pharmacy network.\n\nWe can provide end-to-end support — including medical approvals and patient support — or simply integrate as a product supplier to reduce your costs. All of it is white labeled so your patients never see our name. Our licensed physician network handles all prescribing, so your clinic doesn't need an MD on staff.\n\nProducts include Semaglutide, Tirzepatide, BPC-157, TB-500, CJC/Ipamorelin, MK-677, NAD+, and more across 1,800+ SKUs — covering weight loss, peptides, TRT/HRT, sexual health, recovery, and wellness. You set your own prices. No inventory, no contracts.\n\nPlatform overview: https://www.myathos.com/enterprise\n\nDoes it make sense to schedule a call this week?" },
-    gatekeeper: { subject: "Quick question for the team at {clinic}", body: "Hello {gatekeeper},\n\nI'm reaching out regarding a peptide and GLP-1 supply partnership for {clinic}. We offer competitive rates, reliable fulfillment, and nationwide 503(a)/503(b) sourcing. Our physician network handles all prescribing — no liability for the clinic's staff.\n\nBrief overview here: https://www.myathos.com/enterprise\n\nCould you help me connect with {name} or whoever handles vendor partnerships?" },
+    owner: { subject: "", body: "" },
+    gatekeeper: { subject: "", body: "" },
   },
   "follow-up": {
-    owner: { subject: "{clinic} — following up on peptide supply", body: "Hello {name},\n\nFollowing up on my last email regarding peptide and GLP-1 supply for {clinic}.\n\nWe offer competitive rates, reliable fulfillment, and nationwide 503(a)/503(b) sourcing across 11 pharmacies and 1,800+ SKUs. We can provide end-to-end support — including medical approvals and patient support — or simply integrate as a product supplier to reduce your costs. All of it is white labeled so your patients never see our name.\n\nProducts include Semaglutide, Tirzepatide, BPC-157, TB-500, CJC/Ipamorelin, MK-677, NAD+, and more — covering weight loss, peptides, TRT/HRT, sexual health, recovery, and wellness. You set your own prices, no contracts.\n\nHere's the info: https://www.myathos.com/enterprise\n\nWould it make sense to schedule a quick call this week?" },
-    gatekeeper: { subject: "Following up — {clinic}", body: "Hello {gatekeeper},\n\nCircling back on my note regarding Athos. We offer competitive rates, reliable fulfillment, and nationwide 503(a)/503(b) sourcing. Our physician network handles all prescribing — no liability for your staff.\n\nOverview here: https://www.myathos.com/enterprise\n\nCould you pass this to {name} or help me get 5 minutes on their calendar?" },
+    owner: { subject: "", body: "" },
+    gatekeeper: { subject: "", body: "" },
   },
   "warm": {
-    owner: { subject: "Next steps — {clinic}", body: "Hello {name},\n\nGood speaking with you. Here's the summary:\n\nWe offer competitive rates, reliable fulfillment, and nationwide 503(a)/503(b) sourcing across 11 pharmacies. We can provide end-to-end support — including medical approvals and patient support — or simply integrate as a product supplier to reduce your costs. All of it is white labeled so your patients never see our name.\n\n1,800+ SKUs covering weight loss, peptides, TRT/HRT, sexual health, recovery, and wellness. {clinic} sets its own pricing. No inventory, no contracts, no staffing overhead.\n\nHere's all the info you asked for: https://www.myathos.com/enterprise\n\nDoes it make sense to schedule 15 minutes this week to walk through the portal and catalog?" },
-    gatekeeper: { subject: "Following up — {clinic}", body: "Hello {gatekeeper},\n\nGood speaking with you. As discussed, we offer competitive rates, reliable fulfillment, and nationwide 503(a)/503(b) sourcing. We can provide end-to-end support — including medical approvals and patient support — or simply integrate as a product supplier to reduce your costs. All of it is white labeled so your patients never see our name.\n\nOverview: https://www.myathos.com/enterprise\n\nDoes it make sense to schedule 15 minutes this week to walk through the details?" },
+    owner: { subject: "", body: "" },
+    gatekeeper: { subject: "", body: "" },
   },
 };
 
@@ -152,8 +144,6 @@ const CLINIC_TASKS = [
   { id: "lookup_email", label: "Lookup Email", type: "input", field: "email", skip: true, icon: "mail" },
   { id: "call", label: "Call", type: "call", cond: "phone_1", icon: "phoneOut" },
   { id: "call_2", label: "Call Phone 2", type: "call", cond: "phone_2", icon: "phoneOut" },
-  { id: "send_email", label: "Send Email", type: "email_outreach", icon: "mail" },
-  { id: "nudge", label: "Nudge", type: "nudge", icon: "send", statusCond: "messaged" },
   { id: "notes", label: "Document Notes", type: "textarea", icon: "edit" },
 ];
 
@@ -328,7 +318,6 @@ export default function Block() {
   const [notes, setNotes] = useState("");
   const [adminNotes, setAdminNotes] = useState("");
   const [adminReviewed, setAdminReviewed] = useState(false);
-  const [dripActive, setDripActive] = useState(false);
   const [phoneDispo, setPhoneDispo] = useState(null);
   const [claimed, setClaimed] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -450,7 +439,7 @@ export default function Block() {
     setEditClinicName(f.clinic_name || ""); setEditAddress(f.address || ""); setEditGateKeeper(f.gate_keeper || "");
     setPhone1(f.phone_1 || ""); setPhone2(f.phone_2 || ""); setEmailVal(f.email || "");
     setNotes(f.sales_notes || ""); setAdminNotes(f.admin_notes || "");
-    setAdminReviewed(!!f.admin_reviewed); setDripActive(!!f.email_drip_active);
+    setAdminReviewed(!!f.admin_reviewed);
     setClaimed(hasRep(f.assigned_rep)); setCopied(false); setPhoneDispo(null);
     setNcDm(true); setNcCall(true);
     setOfferProduct(false);
@@ -572,7 +561,6 @@ export default function Block() {
   };
 
   const openIG = () => {
-    window.open(`https://instagram.com/${handle}`, "_blank");
     const nextDone = new Set(done).add("view_profile");
     setDone(nextDone);
     if (user?.id && !claimed) { setClaimed(true); saveLead({ assigned_rep: userLink, tasks_completed: JSON.stringify([...nextDone]) }); }
@@ -664,7 +652,7 @@ export default function Block() {
     else { if (!phone1.trim() && phoneDispo !== "intl") finalStatus = "Look-up Info"; }
     if (finalStatus !== leadStatus) { setLeadStatus(finalStatus); if (finalStatus === "Look-up Info") toast("No contact info — status set to Look-up Info"); }
     const nextId = getNextRRId();
-    const fields = { name: editName.trim(), handle: editHandle.trim(), followers: editFollowers.trim(), focus: editFocus.trim(), status: finalStatus, assigned_rep: userLink, phone_1: phone1.trim(), phone_2: phone2.trim(), email: emailVal.trim(), sales_notes: eNotes.trim(), tasks_completed: JSON.stringify([...eDone]), email_drip_active: dripActive, clinic_name: editClinicName.trim(), address: editAddress.trim(), gate_keeper: editGateKeeper.trim() };
+    const fields = { name: editName.trim(), handle: editHandle.trim(), followers: editFollowers.trim(), focus: editFocus.trim(), status: finalStatus, assigned_rep: userLink, phone_1: phone1.trim(), phone_2: phone2.trim(), email: emailVal.trim(), sales_notes: eNotes.trim(), tasks_completed: JSON.stringify([...eDone]), clinic_name: editClinicName.trim(), address: editAddress.trim(), gate_keeper: editGateKeeper.trim() };
     if (isAdmin) { fields.admin_reviewed = adminReviewed; fields.admin_notes = adminNotes.trim(); }
     updateRecord.mutate({ recordId: lead.id, fields }, {
       onSuccess: () => { toast.success("Lead submitted"); setSubmitting(false); lastHydratedId.current = null; if (nextId) setActiveLeadId(nextId); },
@@ -1171,7 +1159,7 @@ export default function Block() {
                       <button onClick={() => window.open(`https://www.google.com/search?q=${encodeURIComponent(leadIsClinic ? `Who owns ${editClinicName}?`.trim() : `${editName} ${(editFocus || "").split(/\s+/)[0] || ""}`)}`, "_blank")} title="Search person" style={{ width: 26, height: 26, borderRadius: 8, border: "1px solid rgba(0,0,0,0.08)", backgroundColor: "transparent", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", color: "#9CA3AF", transition: "all .2s", flexShrink: 0 }}>{I.search}</button>
                     </div>
                     <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 4, flexWrap: "wrap" }}>
-                      {handle && <a href={`https://instagram.com/${handle}`} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: 14, fontWeight: 500, color: P, textDecoration: "none" }}>@{handle} {I.ext}</a>}
+
                       <span style={{ fontSize: 11, fontWeight: 600, color: claimed ? "#059669" : "#9CA3AF", padding: "2px 8px", borderRadius: 9999, backgroundColor: claimed ? "rgba(5,150,105,0.08)" : "rgba(0,0,0,0.03)", border: `1px solid ${claimed ? "rgba(5,150,105,0.2)" : "rgba(0,0,0,0.06)"}` }}>Assigned: {claimed ? (Array.isArray(f.assigned_rep) && f.assigned_rep[0]?.label || user?.fullName || "You") : "Unassigned"}</span>
                       {/* Type dropdown */}
                       <div style={{ position: "relative" }}>
@@ -1327,13 +1315,6 @@ export default function Block() {
                     <input value={r.v} onChange={e => r.set(e.target.value)} placeholder={`Enter ${r.l.toLowerCase()}`} style={{ width: "100%", fontFamily: FB, fontSize: 13, fontWeight: 500, padding: "6px 10px", borderRadius: 8, border: "1px solid rgba(0,0,0,0.06)", backgroundColor: r.v ? "#fff" : "rgba(0,0,0,0.02)", color: PD, outline: "none", boxSizing: "border-box" }} onFocus={focH} />
                   </div>
                 ))}
-                <div style={{ marginTop: 12, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                  <span style={{ fontSize: 13, fontWeight: 500, color: PD }}>Add to Drip Campaign</span>
-                  <button onClick={() => { const next = !dripActive; setDripActive(next); saveLead({ email_drip_active: next }); }} style={{ width: 44, height: 24, borderRadius: 12, border: "none", backgroundColor: dripActive ? P : "rgba(0,0,0,0.12)", position: "relative", cursor: "pointer", transition: "background-color .2s", padding: 0, flexShrink: 0 }}>
-                    <span style={{ position: "absolute", top: 2, left: dripActive ? 22 : 2, width: 20, height: 20, borderRadius: "50%", backgroundColor: "#fff", boxShadow: "0 1px 3px rgba(0,0,0,0.2)", transition: "left .2s" }} />
-                  </button>
-                </div>
-                {dripActive && <div style={{ marginTop: 6, padding: "4px 10px", borderRadius: 9999, backgroundColor: "rgba(36,92,58,0.08)", fontSize: 11, fontWeight: 500, color: P, display: "inline-flex" }}>Drip active</div>}
                 {f.skool_community_link && (
                   <div style={{ marginTop: 10, padding: "6px 0", borderTop: "1px solid rgba(0,0,0,0.04)" }}>
                     <div style={{ fontSize: 11, fontWeight: 600, color: "#9CA3AF", textTransform: "uppercase", letterSpacing: ".04em", marginBottom: 4 }}>Skool</div>
